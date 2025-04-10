@@ -1,15 +1,41 @@
 # Forward And Inverse Diffraction In Phasor Fields
-This repository is the official implementation of [Forward and Inverse Diffraction in Phasor Fields](https://opg.optica.org/oe/fulltext.cfm?uri=oe-33-5-11420&id=568850).
+This repository is the official implementation of:
 
-### Abstract
-Non-line-of-sight (NLOS) imaging is an inverse problem that consists of reconstructing a hidden scene out of the direct line-of-sight given the time-resolved light scattered back by the hidden scene on a relay wall.  
+<div>
+    <p align="center">
+        "Forward And Inverse Diffraction In Phasor Fields" (Optics Express, Vol. 33, Issue 5, 2025)
+        <br />
+        <a href="https://jgarciapueyo.github.io/"><strong>Jorge Garcia-Pueyo</strong></a>
+        ·
+        <a href="http://adolfo-munoz.com/"><strong>Adolfo Muñoz</strong></a>
+    </p>
+    <p align="center">
+        <a href='https://opg.optica.org/oe/fulltext.cfm?uri=oe-33-5-11420&id=568850'>
+        <img src='https://img.shields.io/badge/Paper-PDF-red?style=flat-square' alt='Paper PDF'>
+        </a>
+        <a href='https://graphics.unizar.es/projects/GarciaPueyo2025ForwardInverse/'>
+        <img src='https://img.shields.io/badge/Project-Page-blue?style=flat-square' alt='Project Page'>
+        </a>
+    </p>
+</div>
 
-This research focuses on the Phasor Fields technique which uses a forward diffraction operator to reconstruct hidden scenes from time-resolved scattered light. We investigate this seemingly counterintuitive approach, using a forward operator to solve an inverse problem, by drawing parallels between Phasor Fields and inverse diffraction methods from optics. We reach the following contributions:
-1. We propose novel interpretations of the relay wall's function as either a phase conjugator or a hologram recorder, framing NLOS imaging as an inverse diffraction problem. 
-2. We introduce "Inverse Phasor Fields", a new algorithm to reconstruct the hidden scene posing the NLOS imaging problem as an inverse diffraction problem.
-3. We present a computational metric to assess the quality and limitations of NLOS reconstruction setups, relating it to the established Rayleigh criterion.
+![Forward and Inverse Diffraction In Phasor Fields](./docs/imgs/teaser.png)
+
+Non-line-of-sight (NLOS) imaging (bottom row) is an inverse problem that consists on reconstructing a hidden scene $\mathcal{V}$ out of the direct line-of-sight given the time-resolved light signal $H(\mathbf{x}_l, \mathbf{x}_s, t)$ captured on the relay wall $\mathcal{S}$.  
+
+This research focuses on the [Phasor Fields](https://www.nature.com/articles/s41586-019-1461-3) technique (bottom row, right section), which uses a forward diffraction operator $\mathbf{g}_z$ to reconstruct hidden scenes from time-resolved scattered light $H(\mathbf{x}_l, \mathbf{x}_s, t)$. We investigate this seemingly counterintuitive approach, using a forward operator to solve an inverse problem (reconstruction of hidden scene $\mathcal{V}$), by drawing parallels between NLOS imaging (bottom row) and diffraction (top row), more especifically between Phasor Fields and inverse diffraction methods. We reach the following contributions:
+1. We relate Phasor Fields to the Reciprocity Theorem in diffraction, since both methods allow to solve the inverse problem using a forward operator. From this insight, we propose novel interpretations of the relay wall's function as either a phase conjugator or a hologram recorder, framing NLOS imaging as an inverse diffraction problem.
+2. We introduce "Inverse Phasor Fields", a new algorithm to reconstruct the hidden scene posing the NLOS imaging problem as an inverse diffraction problem, using the inverse diffraction operator $\mathbf{g}^{-1}_z$.
+3. We present a computational metric to assess the quality and limitations of NLOS reconstruction setups, based on the diffraction operator expressed in matricial form, and we relate it to the established Rayleigh criterion.
 
 ### Results
+We show a comparison of hidden object reconstructions of (up) *letter4* and (bottom) *NLOSletter* scenes, from [Liu *et al.* dataset](https://biostat.wisc.edu/~compoptics/phasornlos20/fastnlos.html), with Phasor Fields and our method, Inverse Phasor Fields.
+
+<div align="center">
+    <img src="./docs/imgs/inverse_phasor_fields_singlewavelength.png">
+</div>
+
+Scenes have been illuminated with a single virtual wavelength $\lambda_v = 0.06m$. We show the amplitude of the reconstructed wavefield (similar to $\mathcal{V}$). The geometry part of the reconstruction are similar for both methods, but the surrounding artifacts vary between Phasor Fields and Inverse Phasor Fields. This is due to the stability of the inverse diffraction operator $\mathbf{g}_z$. For more results, including the analysis of our new quality metric, please see the [paper](https://opg.optica.org/oe/fulltext.cfm?uri=oe-33-5-11420&id=568850).
 
 ### Citation
 ```bibtex
@@ -28,7 +54,7 @@ This research focuses on the Phasor Fields technique which uses a forward diffra
 }
 ```
 
-## Replicating the results: Getting Started
+## Replicating the results
 The recommended way to run the scripts to replicate the results is:
 1. Set up a Python virtual environment and install dependencies.
 2. Download the required NLOS capture data (both real and simulated).
